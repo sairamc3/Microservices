@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: springscheduler
+  name: springscheduler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springscheduler
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: springscheduler
+    spec:
+      containers:
+      - image: sairamc3/springscheduler
+        name: springscheduler
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: springscheduler
+  name: springscheduler
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: springscheduler
+  type: ClusterIP
+status:
+  loadBalancer: {}
